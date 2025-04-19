@@ -109,6 +109,7 @@ plt.figtext(
     fontsize=9,
 )
 
+# uncomment these next two lines if you want to save as a PNG
 # plt.savefig('uwave_visualization.png', dpi=300, bbox_inches='tight')
 # print("Saved visualization to uwave_visualization.png")
 plt.show()

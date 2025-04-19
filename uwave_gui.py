@@ -13,6 +13,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox, StringVar
+from ttkthemes import ThemedTk
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from uwave_interface import UwaveMonitor
@@ -25,13 +26,14 @@ class UwaveGUI:
         self.root.geometry("1024x600")
 
         style = ttk.Style()
-        default_font = ("TkDefaultFont", 12)
-        style.configure(".", font=default_font)
-        style.configure("TButton", padding=4)
+        print("Available themes:", style.theme_names())
+        print("Current theme:", style.theme_use())
+        style.theme_use("blue")
 
+        default_font = ("TkDefaultFont", 12)
         self.monitor = UwaveMonitor()
         self.worker_thread = None
-        self.csv_file = "uwave_data.csv"
+        self.csv_file = "/home/pi/divenet/uwave_data.csv"
 
         # top-down view
         self.base_modem_pos = (0, 0)  # Position of base modem (local)
@@ -1019,7 +1021,7 @@ class UwaveGUI:
 
 
 def main():
-    root = tk.Tk()
+    root = ThemedTk(theme="blue")
     root.title("uWave Modem Controller")
     root.attributes("-zoomed", True)  # fullscreen on RPi
 
